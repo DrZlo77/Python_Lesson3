@@ -1,7 +1,6 @@
 
 
 # Получаем текст истории из файла 'Text_story'
-# from builtins import map
 
 file = open('Text_story','r', encoding= 'utf-8')
 text_story = file.read()
@@ -49,8 +48,19 @@ text_story_task_3 = text_story
 
 list_story_task_3 = list(map(lambda story_text: story_text.lower(), list_text ))
 
-text_collect = ' '.join(list_story_task_3)
-print(list_story_task_3)
+#==================================================================================
+# (5) Дополнительное задание - выполняем лимитизацию
+
+import pymorphy2
+pymorphy = pymorphy2.MorphAnalyzer()
+
+morphy_list = []
+
+for elem in list_story_task_3:
+    morphy_list.append(pymorphy.parse(elem)[0].normal_form)
+
+text_collect = ' '.join(morphy_list)
+print(text_collect)
 
 # text_collect = ''
 # for elem in  list_story_task_3:
